@@ -56,7 +56,8 @@ class NetworkManager: Networking {
             }
 
             guard let data = data else {
-                preconditionFailure("No error was received but we also don't have data...")
+                completion(.failure(.backendError))
+                return
             }
 
             do {
@@ -67,5 +68,19 @@ class NetworkManager: Networking {
                 completion(.failure(.parsingError))
             }
         }
+    }
+}
+
+private extension Endpoint {
+    func buildUrlRequest() -> URLRequest? {
+        guard let url = URL(string: urlString) else {
+            return nil
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = method.rawValue
+        for (key, value) in headers {
+            request.setValue(value, forHTTPHeaderField: key)
+        }
+        return request
     }
 }

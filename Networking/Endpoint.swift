@@ -16,16 +16,4 @@ struct Endpoint {
     var urlString: String
     var method: HTTPMethod
     var headers: [String: String]
-
-    func buildUrlRequest() -> URLRequest? {
-        guard let url = URL(string: urlString) else {
-            return nil
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = method.rawValue
-        for (key, value) in headers {
-            request.setValue(value, forHTTPHeaderField: key)
-        }
-        return request
-    }
 }
