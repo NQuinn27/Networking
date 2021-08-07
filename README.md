@@ -13,7 +13,7 @@ Generally these would be expanded upon based on the error states possible with a
 Usage:
 ```
 class SampleService {
-    static let shared = AuthenticationService(networkManager: NetworkManager())
+    static let shared = SampleService(networkManager: NetworkManager())
     private let networkManager: Networking
     
     init(networkManager: Networking) {
