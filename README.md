@@ -29,6 +29,9 @@ class SampleService {
 }
 ```
 
+## Testing
+By conforming URLSession to NetworkSession protocol, it allows us to inject a mock to take the place of URLSession in tests - enabling 
+full testing of the `execute` method without hitting the network.
 
 
 
